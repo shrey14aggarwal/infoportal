@@ -1,0 +1,39 @@
+h3{
+    margin-left: 12cm;
+    margin-right: 7cm;
+   
+}
+
+h4{
+    margin-left: 700px;
+}
+
+h2{
+  margin-left: 330px;
+  width: 24px;
+    height: 24px;
+    transform: scale(1.5);
+}
+
+mat-form-field{
+    width: 50%;
+    height: 10%;
+}
+
+example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+  }
+
+  .example-radio-button {
+    margin: 10px;
+  }
+  button{
+    margin-right: 50px;
+  }
+
+  mat-icon{
+    margin-left: 300px;
+    cursor: pointer;
+  }

@@ -1,0 +1,36 @@
+
+<mat-toolbar color="primary">
+	<span>{{loginmessage}}</span>
+	<mat-icon *ngIf="!disabled" svgIcon="close" color="warn" (click)="onClose()" ></mat-icon>
+  </mat-toolbar>
+<h3>	
+<form [formGroup]="myForm" >
+	<mat-form-field   >
+		<mat-label>Name</mat-label>
+		<input matInput formControlName="name" [(ngModel)]="myname">
+		<mat-error *ngIf="!this.myForm.get('name').valid ">
+			Enter the name
+		</mat-error>
+		<mat-error *ngIf="this.myForm.get('name').hasError('minlength') ">
+			Must be 4 characters long
+		</mat-error>
+	</mat-form-field>
+		<br><br>
+	<mat-form-field >
+		<mat-label>Password</mat-label>
+		<input matInput type="password" formControlName="password" [(ngModel)]="password">
+		<mat-error *ngIf="!this.myForm.get('password').valid">
+			Enter a valid password
+		</mat-error>
+	</mat-form-field>
+	  <br><br>
+	  <button [disabled] = "!myForm.valid"  mat-raised-button *ngIf="disabled" color="primary" (click)="Submit()">Login</button>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<button mat-raised-button color="primary" *ngIf="disabled" (click)="signup()">Sign up</button>
+	<button mat-raised-button color="primary" *ngIf="!disabled" (click)="enter()">Enter</button>
+
+	
+</form>
+
+	
+</h3>

@@ -1,0 +1,27 @@
+table {
+    width: 80%;
+    margin-left: 120px;
+   
+  }
+
+  mat-icon{
+    cursor: pointer;
+  }
+
+  h3{
+    margin-left: 400px;
+  }
+  mat-form-field{
+    width: 450px;
+  }
+
+  h2{
+    margin-left: 160px;
+  }
+
+
+  button{
+margin-right: 10px;
+  }
+
+  

@@ -1,0 +1,24 @@
+h3{
+    margin-top: 2cm;
+    margin-left: 12cm;
+    margin-right: 7cm;
+   
+}
+
+h4{
+    background-color: burlywood;
+}
+
+mat-form-field{
+    width: 50%;
+    height: 10%;
+}
+h5{
+    margin-left:50px;
+}
+
+mat-icon{
+    margin-left: 900px;
+    cursor: pointer;
+    transform: scale(1.5);
+}

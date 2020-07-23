@@ -1,0 +1,78 @@
+<mat-toolbar color="primary">
+  <span>Details of the Users</span>
+  <h2>
+    <form [formGroup]="myform">
+      <mat-form-field>
+        <input type="text" formControlName="search" matInput placeholder="Search" [matAutocomplete]="auto" />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">{{ option }}</mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+  </h2>
+  <h3>
+    <button mat-fab color="accent" (click)="logout()">Logout</button>&nbsp;
+    <button mat-fab color="accent" (click)="add()">Add Info</button>
+  </h3>
+
+</mat-toolbar>
+<table mat-table [dataSource]="infos" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="Id">
+    <th mat-header-cell *matHeaderCellDef> Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="First Name">
+    <th mat-header-cell *matHeaderCellDef> First Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.first}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Last Name">
+    <th mat-header-cell *matHeaderCellDef> Last name </th>
+    <td mat-cell *matCellDef="let element"> {{element.last}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Gender">
+    <th mat-header-cell *matHeaderCellDef> Gender </th>
+    <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="House No.">
+    <th mat-header-cell *matHeaderCellDef> House No. </th>
+    <td mat-cell *matCellDef="let element"> {{element.addressEntity.house}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Street">
+    <th mat-header-cell *matHeaderCellDef>Street </th>
+    <td mat-cell *matCellDef="let element"> {{element.addressEntity.street}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Zip code">
+    <th mat-header-cell *matHeaderCellDef> Zip code</th>
+    <td mat-cell *matCellDef="let element"> {{element.addressEntity.zip}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Country">
+    <th mat-header-cell *matHeaderCellDef> Country </th>
+    <td mat-cell *matCellDef="let element"> {{element.addressEntity.country}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Delete">
+    <th mat-header-cell *matHeaderCellDef> Delete </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon svgIcon="delete" color="warn" (click)="onPress(element.id)"></mat-icon>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="Edit">
+    <th mat-header-cell *matHeaderCellDef> Edit </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon svgIcon="create" color="primary" (click)="onEdit(element.id)"></mat-icon>
+    </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>

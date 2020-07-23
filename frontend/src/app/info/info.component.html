@@ -1,0 +1,124 @@
+<mat-toolbar color="primary">
+	
+	<span>Personal Information</span>
+	<h2>
+		<mat-icon *ngIf="disabled" svgIcon="close" color="warn" (click)="onClose()" ></mat-icon>
+		
+	</h2>
+	
+	<h4>
+		<a routerLink="/info2"><button mat-fab *ngIf="!disabled" color="accent"> Info</button></a>
+		
+	</h4>
+	
+	
+</mat-toolbar>
+
+
+<mat-horizontal-stepper [linear]="false" #stepper>
+	<mat-step [stepControl]="myForm">
+		<h3>
+			<form [formGroup]="myForm">
+				<ng-template matStepLabel>Fill the basic Information</ng-template>
+				<mat-form-field *ngIf="disabled">
+					<mat-label>Id</mat-label>
+					<input matInput formControlName="id" [(ngModel)]="id">
+
+					<mat-error *ngIf="!this.myForm.get('id').valid">
+						Please enter the Id
+					</mat-error>
+				</mat-form-field>
+
+				<br><br>
+
+				<mat-form-field>
+					<mat-label>First Name</mat-label>
+					<input matInput formControlName="firstName" [(ngModel)]="firstName">
+					<mat-error *ngIf="!this.myForm.get('firstName').valid">
+						Enter the first name
+					</mat-error>
+				</mat-form-field>
+
+				<br><br>
+				<mat-form-field>
+					<mat-label>Last Name</mat-label>
+					<input matInput formControlName="lastName" [(ngModel)]="lastName">
+
+					<mat-error *ngIf="!this.myForm.get('lastName').valid">
+						Please enter the last name
+					</mat-error>
+				</mat-form-field>
+
+				<br><br>
+				<label id="example-radio-group-label">Select your gender</label><br>
+				<mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+					[(ngModel)]="gender" [ngModelOptions]="{standalone: true}">
+					<mat-radio-button class="example-radio-button" *ngFor="let gender of genders" [value]="gender">
+						{{gender}}
+					</mat-radio-button><br>
+				</mat-radio-group>
+
+				<br>
+
+				<a routerLink="/home"><button mat-raised-button color="primary"> Logout</button></a>
+				&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+				<button mat-raised-button color="primary" matStepperNext>Next</button>
+
+			</form>
+		</h3>
+	</mat-step>
+	<mat-step [stepControl]="second">
+		<h3>
+			<form [formGroup]="second">
+				<ng-template matStepLabel>Fill out your address</ng-template>
+				<mat-form-field>
+					<mat-label>House Number</mat-label>
+					<input matInput formControlName="house" [(ngModel)]="house">
+					<mat-error *ngIf="!this.second.get('house').valid ">
+						Enter the house number
+					</mat-error>
+				</mat-form-field>
+				<br><br>
+				<mat-form-field>
+					<mat-label>Street</mat-label>
+					<input matInput formControlName="street" [(ngModel)]="street">
+					<mat-error *ngIf="!this.second.get('street').valid ">
+						Enter the street number
+					</mat-error>
+				</mat-form-field>
+				<br><br>
+				<mat-form-field>
+					<mat-label>Zip Code</mat-label>
+					<input matInput formControlName="zip" [(ngModel)]="zip">
+					<mat-error *ngIf="!this.second.get('zip').valid && (this.second.get('zip').dirty 
+					||this.second.get('zip').touched) ">
+						<div [hidden]="!this.second.get('zip').errors.pattern">
+							Only numbers are allowed
+						</div>
+						<div [hidden]="!this.second.get('zip').errors.required">
+							Enter the zip code
+						</div>
+					</mat-error>
+				</mat-form-field>
+				<br><br>
+				<mat-form-field>
+					<mat-label>Country</mat-label>
+					<mat-select formControlName="land" [(ngModel)]="land">
+						<mat-option *ngFor="let country of countries" [value]="country">
+							{{country}}
+						</mat-option>
+					</mat-select>
+					<mat-error *ngIf="!this.second.get('land').valid ">
+						Enter the country name
+					</mat-error>
+				</mat-form-field>
+				<br><br>
+				<button mat-raised-button color="primary" matStepperPrevious>Back</button>
+				&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+				<button [disabled] = "!second.valid" *ngIf="!disabled" mat-raised-button color="primary" (click)="createInfo()">Add</button>
+
+				<button *ngIf="disabled" mat-raised-button color="primary" (click)="editInfo()">Edit</button>
+			</form>
+		</h3>
+	</mat-step>
+</mat-horizontal-stepper>
